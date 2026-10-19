@@ -1,0 +1,88 @@
+CompileFlags:
+  CompilationDatabase:
+    "E:/source/testing-clang/out/build/x64-debug/compile_commands.json"
+  Add: 
+    - "-std=c++23"
+    - "-xc++"
+    - "-IE:/source/testing-clang/INCLUDE"
+    - "-IE:/source/testing-clang/INCLUDE/RNG"
+    - "-IE:/source/testing-clang/INCLUDE/clipboardxx"
+    - "-IE:/source/testing-clang/INCLUDE/TS/include"  
+    - "-IE:/source/testing-clang/nanoid/inc"         
+    - "-IE:/source/testing-clang/external/glaze/include"
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/llama_cpp-src/include" 
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/llama_cpp-src/include" 
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/liboai-src/liboai/include"
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/cpr-src/include"
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/folly-src"
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/curl-src/include"
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/libfork-src/include"
+    # E:/source/testing-clang/out/build/x64-debug/_deps/libfork/src/include/libfork/core.hpp
+    # E:\source\testing-clang\build\_deps\cpr-build\cpr_generated_includes
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/cpr-build/cpr_generated_includes"
+    - "-IE:/PATH/vcpkg/installed/x64-windows/include"
+    - "-IC:/vcpkg/installed/x64-windows/include" # E:\source\testing-clang\third_party\drogon\lib\inc\drogon\HttpAppFramework.h
+    - "-IC:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/include"
+    - "-IC:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/atlmfc/include"
+    - "-IC:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/ucrt"
+    - "-IC:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/shared"
+    - "-IC:/Program Files (x86)/Windows Kits/10/Include/10.0.22621.0/um"
+    - "-IE:/source/testing-clang/out/build/x64-debug/_deps/cpptrace-src/include"
+    - "-fms-compatibility"
+    - "-fms-extensions"
+    - "-fdelayed-template-parsing"
+    - "-fexceptions" 
+    - "-fcxx-exceptions"
+    - "-DWIN32"
+    - "-D_WINDOWS"
+    - "-D_WIN32"
+    - "-D_DEBUG"
+    - "-DUNICODE"
+    - "-D_UNICODE"
+    - "-DTREE_SITTER_STATIC_DEFINE"  # Добавляем определение для tree-sitter
+
+
+Index:
+  Background: Build
+  
+Diagnostics:
+  # Отключаем все проверки неиспользуемых включений
+  UnusedIncludes: None
+  
+  # Отключаем конкретные диагностики
+  Suppress: 
+    - "unused-includes"
+    - "ext_using_undefined_std"
+    - "fatal_too_many_errors"
+    - "exceptions_disabled"
+
+  ClangTidy:
+    Add: 
+      - modernize*
+      - performance*
+      - readability*
+      - bugprone*
+    Remove:
+      - modernize-use-trailing-return-type
+      - readability-identifier-length
+      - readability-magic-numbers
+      - readability-identifier-naming
+      - readability-uppercase-literal-suffix
+      - modernize-use-nodiscard
+      - readability-implicit-bool-conversion
+      - readability-function-cognitive-complexity
+      - bugprone-easily-swappable-parameters
+      - bugprone-branch-clone
+    CheckOptions:
+      readability-identifier-naming.ClassCase: CamelCase
+      readability-identifier-naming.MethodCase: camelBack
+      readability-identifier-naming.VariableCase: camelBack
+      readability-identifier-naming.ConstantCase: UPPER_CASE
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+  
+Completion:
+  AllScopes: Yes

@@ -1,0 +1,7 @@
+out
+.cache
+.vs
+build/
+build-plugin/
+__pycache__/
+.claude/settings.local.json
